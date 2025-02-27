@@ -1,0 +1,109 @@
+body {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #021024;
+}
+.main-box {
+  border: 2px solid #C1E8FF;
+  border-radius: 2rem;
+  background-color: #052659;
+  padding: 1rem 2rem;
+}
+.task-box, .new-task, .head-text {
+  background-color: #5483B3;
+  border: 2px solid #C1E8FF;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+.task-box {
+  margin: 0.5rem 0rem 0.5rem 0rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 0.8rem;
+}
+.head-text {
+  text-align: center;
+  font-family: Roboto;
+  font-size: 3rem;
+  font-weight: 800;
+  color: #052659;
+}
+.task {
+  display: flex;
+  justify-content: space-between;
+  gap: 10rem;
+  background-color: #7DA0CA;
+  border-radius: 1rem;
+  padding: 1rem;
+}
+.task-text-box {
+  font-size: 1.4rem; 
+  font-weight: 600;
+  font-family: Roboto; 
+  color: #052659;
+  overflow: hidden;
+}
+.btn-box {
+  display: flex;
+  align-items: center;
+}
+.new-task {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.input-box, .todo-btn, .delete-btn {
+  background-color: #C1E8FF;
+  text-align: center;
+  color: #052659;
+  width: 100%;
+  padding: 0.5rem;
+  border: none;
+  border-radius: 1rem;
+  font-size: 1.2rem;
+  font-family: Roboto;
+  font-weight: 400;
+  cursor: pointer;
+  transition: 0.5sec;
+}
+.todo-btn:hover, .delete-btn:hover {
+  box-shadow: 0 0 0.5rem #021024;
+}
+.todo-btn:active, .delete-btn:active {
+  opacity: 0.8;
+}
+.delete-btn {
+  border: 2px solid #052659;
+  background-color: #C1E8FF;
+  color: #052659;
+}
+.todo-btn {
+  display: block;
+  margin-top: 1rem;
+  border: 2px solid #052659;
+}
+.tick {
+  width: 30px;  /* Custom size */
+  height: 30px;
+  appearance: none;
+  border: 2px solid #052659;
+  background-color: #C1E8FF;
+  border-radius: 5px; /* Optional: Makes it rounded */
+  display: inline-block;
+  position: relative;
+}
+
+.tick:checked::before {
+  content: '✔';
+  font-size: 22px;
+  color: #052659;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

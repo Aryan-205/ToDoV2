@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ToDo</title>
+  <link rel="stylesheet" href="style.css">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital@0;1&display=swap" rel="stylesheet">
+
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+  <div class="main-box">
+    <div class="head-text">
+      Sign-up
+    </div>
+    <div class="Sign-up-box">
+      <input type="text" name="" class="input-box input-box-username" placeholder="Username">
+      <input type="password" name="" class="input-box input-box-password" placeholder="Password">
+      <button class="sign-up-btn" onclick="signUp()">Sign-up</button>
+      <a class="signin-link" href="signIn.html">Already have an account. Sign-in</a>
+    </div>
+  </div>
+  <script>
+    async function signUp(){
+      const usrInp = document.querySelector(".input-box-username").value
+      const pasInp = document.querySelector(".input-box-password").value
+
+      const response = await axios.post("http://localhost:2999/signup",{
+        usrInp,
+        pasInp
+      })
+      alert(response.data.message);
+      document.location.href="signIn.html"
+    }
+  </script>
+</body>
+</html>
