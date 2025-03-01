@@ -16,7 +16,7 @@ showMessage("hello")
 async function deleteTodo(id){
   document.getElementById(`task-${id}`).remove();
   const response = await axios.delete("http://localhost:2999/delete", {
-    data: { id }, // ✅ Must use `data`
+    data: { id }, // 
     headers: { Authorization: localStorage.getItem("token") },
   });
 

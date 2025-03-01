@@ -96,13 +96,13 @@ app.get("/todos", logger, auth, (req, res) => {
 
 // Adding the task
 app.post("/add", logger, auth, (req, res) => {
-  console.log("Received new task:", req.body); // ✅ Log correct data
+  console.log("Received new task:", req.body); 
   const foundUser = users.find((u) => u.username === req.username);
   if (!foundUser) {
     return res.json({ message: "User not found!" });
   }
 
-  const { id, task, completed } = req.body; // ✅ Correctly extract task
+  const { id, task, completed } = req.body; 
 
   if (!task) {
     return res.json({ message: "Task is required!" });
@@ -116,7 +116,7 @@ app.post("/add", logger, auth, (req, res) => {
 });
 // Task is completed
 app.put("/complete", logger, auth, (req, res) => {
-  const taskid = Number(req.body.id); // ✅ Convert to number
+  const taskid = Number(req.body.id); 
   const completed = req.body.completed;
   
   const foundUser = users.find((u) => u.username === req.username);
@@ -130,7 +130,7 @@ app.put("/complete", logger, auth, (req, res) => {
     return res.json({ message: "Task not found!" });
   }
 
-  taskOfId.completed = completed;  // ✅ Properly update the completed status
+  taskOfId.completed = completed;  
   console.log(`Updated task ${taskid} completion:`, completed);
   
   res.json({ message: "Task status updated!" });
