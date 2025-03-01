@@ -7,6 +7,8 @@ body {
   background-color: #021024;
 }
 .main-box {
+  min-height: 20.5rem;
+  min-width: 23rem;
   border: 2px solid #C1E8FF;
   border-radius: 2rem;
   background-color: #052659;
@@ -19,6 +21,7 @@ body {
   padding: 1rem;
 }
 .task-box {
+  min-height: 3rem;
   margin: 0.5rem 0rem 0.5rem 0rem;
   display: flex;
   flex-direction: column;
@@ -106,4 +109,24 @@ body {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+.toast {
+  visibility: hidden;
+  min-width: 60px;
+  background-color: greenyellow;
+  color: #052659;
+  text-align: center;
+  padding: 8px;
+  position: fixed;
+  top: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 5px;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.5s, visibility 0.5s;
+}
+.toast.show {
+  visibility: visible;
+  opacity: 1;
 }
