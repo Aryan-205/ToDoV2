@@ -1,5 +1,4 @@
 let id=1
-let completed=false
 
 // Adding the task just by clicking the Enter key
 
