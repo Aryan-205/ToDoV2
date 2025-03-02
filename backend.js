@@ -16,7 +16,7 @@ function logger(req,res,next){
 }
 
 app.get("/", function(req, res) {
-  res.sendFile(__dirname + "/signup_signin/index.html")
+  res.sendFile(__dirname + "/src/index.html")
 })
 
 app.post("/signup",logger,(req,res)=>{
