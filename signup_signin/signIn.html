@@ -46,6 +46,11 @@
         document.location.href="index.html"
       }
     }
+    document.querySelector(".input-box-password").addEventListener('keydown',(event)=>{
+      if(event.key=='Enter'){
+        signIn()
+      }
+    })
   </script>
 </body>
 </html>

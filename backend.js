@@ -117,7 +117,7 @@ app.post("/add", logger, auth, (req, res) => {
 // Task is completed
 app.put("/complete", logger, auth, (req, res) => {
   const taskid = Number(req.body.id); 
-  const completed = req.body.completed;
+  const taskCompleted = req.body.completed;
   
   const foundUser = users.find((u) => u.username === req.username);
   if (!foundUser) {
@@ -130,8 +130,8 @@ app.put("/complete", logger, auth, (req, res) => {
     return res.json({ message: "Task not found!" });
   }
 
-  taskOfId.completed = completed;  
-  console.log(`Updated task ${taskid} completion:`, completed);
+  taskOfId.completed = taskCompleted;  
+  console.log(`Updated task ${taskid} completion:`, taskCompleted);
   
   res.json({ message: "Task status updated!" });
 });

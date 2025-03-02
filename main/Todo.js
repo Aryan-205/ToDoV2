@@ -69,34 +69,19 @@ async function addTodo(){
   displayUsers()
 }
 
-// async function taskCompleted(id){
-//   if(!completed){
-//     document.getElementById(`task-text-${id}`).style.textDecoration='line-through';
-//     completed=true
-//     await axios.put("http://localhost:2999/complete",{
-//       id,
-//       completed
-//     })
-
-//   } else {
-//     document.getElementById(`task-text-${id}`).style.textDecoration='none';
-//     completed=false
-//     await axios.put("http://localhost:2999/complete",{
-//       id,
-//       completed
-//     })
-//   }
-//   showMessage("Task completed")
-// }
 async function taskCompleted(id) {
   const checkbox = document.getElementById(`tick-${id}`);
-  const isCompleted = checkbox.checked; 
+  const isCompleted = checkbox.checked ? true : false; 
 
   document.getElementById(`task-text-${id}`).style.textDecoration = isCompleted ? 'line-through' : 'none';
 
   await axios.put("http://localhost:2999/complete", {
     id:Number(id),
     completed: isCompleted
+  }, {
+    headers: {
+      Authorization: localStorage.getItem("token")  
+    }
   });
 
   showMessage(isCompleted ? "Task marked as completed" : "Task marked as incomplete");
@@ -124,8 +109,31 @@ async function displayUsers() {
         Authorization: token // Send the token in the request
       }
     });
-    console.log(response.data);
+    const tasks = response.data.todos;
+    console.log("Updated tasks:", tasks);
+
+    const taskBox = document.querySelector(".task-box");
+    taskBox.innerHTML = "";  // Clear existing tasks
+
+    tasks.forEach(task => {
+      const displayEl = document.createElement("div");
+      displayEl.className = "task";
+      displayEl.id = `task-${task.id}`;
+      displayEl.innerHTML = `
+        <div class="task-text-box">
+          <p id="task-text-${task.id}" class="task-text" style="text-decoration: ${task.completed ? 'line-through' : 'none'};">
+            ${task.task}
+          </p>
+        </div>
+        <div class="btn-box">
+          <input type="checkbox" id="tick-${task.id}" class="tick" ${task.completed ? 'checked' : ''} onclick="taskCompleted(${task.id})">
+          <button id="delete-btn-${task.id}" class="delete-btn" onclick="deleteTodo(${task.id})">Delete</button>
+        </div>`;
+
+      taskBox.appendChild(displayEl);
+    });
   } catch (error) {
     console.error("Error fetching todos:", error);
   }
 }
+displayUsers()
